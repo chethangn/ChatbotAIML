@@ -1,5 +1,5 @@
 # Chatbot
-AI Based Chatbot
+AIML Based Chatbot
 
 Added New GUI compatible with all browsers, mobiles with autoscroll
 
