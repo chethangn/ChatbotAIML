@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container background-color: rgb(255,0,255);">
+
+        <div class="row">
+            <h3 class="text-center header_text">
+                Chatbot
+            </h3>
+            <div class="col-md-4 col-md-offset-4">
+                <div id="chatPanel" class="panel panel-info">
+                    <div class="panel-heading">
+                        <strong> Hi there! I am Chethan's chatbot</strong>
+                    </div>
+                    <div class="panel-body fixed-panel">
+                        <ul class="media-list">
+                        </ul>
+                    </div>
+                    <div class="panel-footer">
+                        <form method="post" id="chatbot-form">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Enter Message" name="messageText" id="messageText" autofocus/>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-info" type="button" id="chatbot-form-btn">SEND</button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            $('#chatbot-form-btn').click(function (e) {
+                e.preventDefault();
+                $('#chatbot-form').submit();
+            });
+
+            $('#chatbot-form').submit(function (e) {
+                e.preventDefault();
+
+                var message = $('#messageText').val();
+                $(".media-list").append(
+                    '<li class="media"><div class="media-body"><div class="media"><div class="media-body">User:' +
+                    message + '<hr/></div></div></div></li>');
+                $.ajax({
+                    type: "POST",
+                    url: "/ask",
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        $('#messageText').val('');
+
+                        var answer = response.answer;
+                        const chatPanel = document.getElementById("chatPanel");
+                        $(".media-list").append(
+                            '<li class="media"><div class="media-body"><div class="media"><div class="media-body">Bot:' +
+                            answer + '<hr/></div></div></div></li>');
+                        $(".fixed-panel").stop().animate({
+                            scrollTop: $(".fixed-panel")[0].scrollHeight
+                        }, 1000);
+
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

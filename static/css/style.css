@@ -1,0 +1,68 @@
+body {
+    background: #fff;
+}
+.row{
+    background-color: floralwhite;
+}
+.fixed-panel {
+    min-height: 450px;
+    max-height: 450px;
+    background-color: #19313c;
+    color: white;
+    overflow: auto;
+}
+
+
+.media-list {
+    overflow: auto;
+    clear: both;
+    display: table;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: normal;
+    line-break: strict;
+}
+
+.panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 6px solid transparent;
+    border-radius: 25px;
+}
+
+.panel-info {
+    border-color: #8ef13c;
+}
+
+.panel-info>.panel-heading {
+    color: #fff;
+    background-color: #8ef13c !important;
+    border-color: #0c2735;
+}
+
+.panel-footer {
+    padding: 10px 15px;
+    background-color: #0c2735;
+    border-top: 1px solid #0c2735;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.leave_form{
+    font-size: 16px;
+    margin-top: 2px;
+    color: #0c468f;
+    text-align: center;
+    font-weight: bold;
+}
+
+.leave_empid{
+    margin-top: 10px;
+    color:#0c468f;
+    width: 100%;
+}
+
+.leave_password{
+    margin-top: 10px !important;
+    color:#0c468f;
+}
